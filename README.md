@@ -1,16 +1,15 @@
 # sort_with_criterions
-Module for sorting objects by several keys (criteria) at once. Criteria have priority and sort type (largest to smallest or smallest to largest).
+The module for sorting an array with objects. Sorting possible on several keys, taking their importance.
 
 <details>
   <summary>Russian language</summary>
-  Модуль для сортировки объектов сразу по нескольким ключам (критериям). Критерии имеют приоритет и тип сортировки (от большего к меньшему или от меньшего к большему).
+Модуль предназначен для сортировки массива с объектами. Сортировка происходит по нескольким ключам с учетом их важности.
+Пример. Каждый продукт в магазине представлен в виде объекта и имеет такие свойства как имя, цена, стоимость доставки и количество на складе (“name”, “price”, “delivery_price”, “stock”). 
+Цена, стоимость доставки и количество на складе – это свойства, влияющие на последовательность продуктов в массиве, то есть «критерии» сортировки.
+Критерии имеют приоритеты. В этом примере, цена является главным свойством продукта (первый приоритет), поэтому сначала продукты будут отсортированы по цене. Те продукты, которые имеют одинаковое значение цены будут отсортированы между собой по цене доставки (второй приоритет). Если в массиве содержаться продукты с одинаковой ценой и стоимостью доставки, они будут отсортированы между собой по количеству на складе (третий приоритет).
 
-Например, у продукции есть такие критерии как цена, стоимость доставки, количество на складе. Используя модуль можно отсортировать продукцию что бы в начале массива
-были продукты с наинизшей ценой, а продукты с одинаковой ценой были дополнительно отсортированы по цене доставке, а те продукты у которые не отличаться между собой 
-по этим двум главным параметрам - были отсортированы между собой по количеству на складе.
+При этом количество критериев сортировки задается динамически.         
 
-При этом количество критериев сортировки имеет динамическое значение. 
-  
 Массив с объектами которые нужно отсортировать: 
 ```js
 let arr_data = [{'name': 'product1', 'price':110, 'delivery_price':4, 'stock':10}, 
@@ -18,9 +17,9 @@ let arr_data = [{'name': 'product1', 'price':110, 'delivery_price':4, 'stock':10
 		{'name': 'product3', 'price':110, 'delivery_price':6, 'stock':8}, 
 		{'name': 'product4', 'price':110, 'delivery_price':6, 'stock':5}];
 ```
-Так выглядит массив с условиями сортировки. Каждое условие это отдельный объект с ключами 'key' и 'sort'. 'key' - это ключ массива по значениям которого должна
-быть сортировка. 'sort' - это тип сортировки, может быть 'biggest_in_first' или 'least_in_first' (соответственно от большего к меньшему или от меньшего к большему)
-Порядок объектов в массиве соответствуют приоритетам сортировки.
+Ниже представлен массив с условиями сортировки. Каждое условие это отдельный объект с ключами 'key' и 'sort'. 'key' - это ключ массива по значениям которого должна
+быть сортировка. 'sort' - это тип сортировки, может быть 'biggest_in_first' или 'least_in_first' (соответственно от большего к меньшему или от меньшего к большему).
+Последовательность объектов в массиве соответствуют приоритетам сортировки.
 ```js
 let arr_criterions = [{'key':'price', 'sort':'least_in_first'},
 		      {'key':'delivery_price', 'sort':'least_in_first'},
@@ -56,8 +55,9 @@ let arr_sorted = sort_with_criterions(arr_data, arr_criterions);
   \*-первыми в массиве всегда будут строки.
 </details>
 
-For example, products have criteria such as price, delivery price, stock quantity. 
-Using the module, you can sort products so that the products with the  lowest price will be at the beginning of the array , and products with the same price will additionally sort by delivery price, and those products that  not differ from each other according to these two main parameters - will sort among themselves according to the quantity in stock.
+Example. Each product in the store is represented as an object and has properties such as name, price, shipping cost, and quantity in stock (“name”, “price”, “delivery_price”, “stock”).
+Price, shipping cost, and quantity in stock are properties that affect the sequence of products in the array, i.e. sorting "criterias".
+Criteria have priority. In this example, price is the main property of the product (first priority), so the products will be sorted by price first. Those products that have the same price value will be sorted among themselves by shipping price (second priority). If the array contains products with the same price and shipping cost, this products will be sorted among themselves by the quantity in stock (third priority).
 
 The number of sorting criteria has a dynamic value.
   
@@ -68,7 +68,7 @@ let arr_data = [{'name': 'product1', 'price':110, 'delivery_price':4, 'stock':10
 		{'name': 'product3', 'price':110, 'delivery_price':6, 'stock':8}, 
 		{'name': 'product4', 'price':110, 'delivery_price':6, 'stock':5}];
 ```
-This is what an array looks like with sort conditions. Each condition is an object with keys 'key' and 'sort'. 'key' is the key of the array by which values the sort should be. 'sort' is the sort type, can be 'biggest_in_first' or 'least_in_first' (largest to smallest or smallest to largest respectively) The order of the objects in the array corresponds to the sort priorities.
+"arr_criterions" is what an array looks like with sort conditions. Each condition is an object with keys 'key' and 'sort'. 'key' is the key of the array by which values the sort should be. 'sort' is the sort type, can be 'biggest_in_first' or 'least_in_first' (largest to smallest or smallest to largest respectively) The order of the objects in the array corresponds to the sort priorities.
 ```js
 let arr_criterions = [{'key':'price', 'sort':'least_in_first'},
 		      {'key':'delivery_price', 'sort':'least_in_first'},
